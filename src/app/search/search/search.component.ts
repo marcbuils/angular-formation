@@ -1,14 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+
 @Component({
   selector: 'sea-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit, OnDestroy {
-  private subscription: Subscription;
-  query = '';
+export class SearchComponent implements OnInit {
+  query: Observable<string>;
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
@@ -17,14 +19,10 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.route.paramMap
-      .subscribe((params) => {
-        this.query = params.get('query') || '';
-        console.log('test: ', this.query);
+    this.query = this.route.paramMap
+      .map((params) => params.get('query') || '')
+      .do((query) => {
+        console.log('query: ', query);
       });
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 }

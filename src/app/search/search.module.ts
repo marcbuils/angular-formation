@@ -1,16 +1,20 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { ResultsComponent } from './results/results.component';
 import { SearchService } from './search.service';
+import { SearchComponent } from './search/search.component';
+import { InputComponent } from './input/input.component';
 
 @NgModule({
-  declarations: [ResultsComponent],
+  declarations: [ResultsComponent, SearchComponent, InputComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
-    ResultsComponent
+    SearchComponent
   ]
 })
 export class SearchModule {

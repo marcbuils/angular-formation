@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { SearchService } from '../search.service';
 
@@ -7,14 +7,13 @@ import { SearchService } from '../search.service';
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.css']
 })
-export class ResultsComponent implements OnInit {
-  @Input() query: string;
+export class ResultsComponent {
+  @Input()
+  set query(query: string) {
+    this.results = this.searchService.search(query);
+  }
+
   results: Promise<string[]>;
 
   constructor(private searchService: SearchService) { }
-
-  ngOnInit() {
-    this.results = this.searchService.search(this.query);
-  }
-
 }

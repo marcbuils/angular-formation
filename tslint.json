@@ -116,7 +116,10 @@
     "component-selector": [
       true,
       "element",
-      "app",
+      [
+        "app",
+        "sea"
+      ],
       "kebab-case"
     ],
     "use-input-property-decorator": true,

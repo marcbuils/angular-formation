@@ -1,6 +1,5 @@
 <ul>
-  Hello !
-  <li *ngFor="let link of results | async">
+  <li *ngFor="let link of (results | async)">
     <a [href]="link">{{link}}</a>
   </li>
 </ul>

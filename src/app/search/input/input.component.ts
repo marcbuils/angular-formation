@@ -1,4 +1,7 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
+import { SearchService } from '../search.service';
 
 @Component({
   selector: 'sea-input',
@@ -6,16 +9,15 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./input.component.css']
 })
 export class InputComponent implements OnInit {
-  query: string = '';
-  @Output() search = new EventEmitter();
+  query: BehaviorSubject<string>;
 
-  constructor() { }
+  constructor(private searchService: SearchService) { }
 
   ngOnInit() {
+    this.query = this.searchService.query;
   }
 
-  onSearch() {
-    this.search.emit(this.query);
+  change(value: string) {
+    this.query.next(value);
   }
-
 }

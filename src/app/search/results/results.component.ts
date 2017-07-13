@@ -1,19 +1,19 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { SearchService } from '../search.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'sea-results',
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.css']
 })
-export class ResultsComponent {
-  @Input()
-  set query(query: string) {
-    this.results = this.searchService.search(query);
+export class ResultsComponent implements OnInit {
+  results: Observable<string[]>;
+
+  constructor(public searchService: SearchService) { }
+
+  ngOnInit() {
+    this.results = this.searchService.results;
   }
-
-  results: Promise<string[]>;
-
-  constructor(private searchService: SearchService) { }
 }

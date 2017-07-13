@@ -18,11 +18,14 @@ export class SearchService {
 
   constructor(private http: Http) {
     this.query = new BehaviorSubject('');
-    this.results = this.query
+    this.results = this.search();
+  }
+
+  search(): Observable<string[]> {
+    return this.query
       .map((query) => this.urlSearch(query))
       .mergeMap((url) => this.http.get(url))
       .map((res: Response) => res.json())
-      .map((body: any[]) => body[3] || [])
+      .map((body: any[]) => body[3] || []);
   }
-
 }

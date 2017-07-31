@@ -20,7 +20,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.subscription = this.route.paramMap
       .subscribe((params) => {
         this.query = params.get('query') || '';
-        console.log('test: ', this.query);
       });
   }
 

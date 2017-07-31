@@ -26,7 +26,7 @@ Typescript
 
 ## présentation
 
-![](http://joossh.com/intro-to-angular2/images/typescript-diagram.png)
+![](https://www.ng-book.com/images/ng2/previews/typescript/es5-es6-typescript-circle-diagram.png)
 
 --- 
 

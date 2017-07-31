@@ -8,7 +8,6 @@
     "ts-node": "ts-node"
   },
   "author": "",
-  "license": "ISC",
   "dependencies": {
     "@types/request-promise-native": "^1.0.6",
     "request": "^2.81.0",

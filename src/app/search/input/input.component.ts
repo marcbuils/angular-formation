@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
-import { SearchService } from '../search.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sea-input',
@@ -9,15 +7,15 @@ import { SearchService } from '../search.service';
   styleUrls: ['./input.component.css']
 })
 export class InputComponent implements OnInit {
-  query: BehaviorSubject<string>;
+  query: string = '';
 
-  constructor(private searchService: SearchService) { }
-
-  ngOnInit() {
-    this.query = this.searchService.query;
+  constructor(private router: Router) {
   }
 
-  change(value: string) {
-    this.query.next(value);
+  ngOnInit() {
+  }
+
+  onSearch() {
+    this.router.navigate(['search', this.query]);
   }
 }

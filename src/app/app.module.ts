@@ -17,7 +17,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     HttpModule,
-    RouterModule.forRoot(routes, {useHash: true})
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

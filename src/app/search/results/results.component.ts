@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 import { SearchService } from '../search.service';
-import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'sea-results',
@@ -11,9 +12,10 @@ import { Observable } from 'rxjs/Observable';
 export class ResultsComponent implements OnInit {
   results: Observable<string[]>;
 
-  constructor(public searchService: SearchService) { }
+  constructor(public searchService: SearchService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.results = this.searchService.results;
+    const query = this.route.paramMap.map((params) => params.get('query'));
+    this.results = this.searchService.search(query);
   }
 }

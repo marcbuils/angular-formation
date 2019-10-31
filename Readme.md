@@ -456,70 +456,8 @@ export class SearchComponent {
 ```
 
 ```html
-<input ng_model="query" /><br />
+<input ng-model="query" /><br />
 Texte saisi: {{query}}
-```
-<br />
-
-> *ngModel est importé par le module `FormsModule`.*
-```typescript
-import { FormsModule } from '@angular/forms';
-
-@NgModule({
-  imports: [
-    FormsModule,
-    // ...
-```
-
----
-
-Les composants
-
-## Attributs d'entrée
-
-```typescript
-export class ResultsComponent {
-  @Input() query: string;
-}
-```
-
-*utilisation :*
-```html
-<app-results query="Ma recherche"></app-results>
-```
-*ou*
-```html
-<app-results [query]="variableDeMaClasse"></app-results>
-```
-
----
-
-Les composants
-
-## Attributs de sortie
-
-```typescript
-export class SearchComponent {
-  query: string = '';
-  @Output() search = new EventEmitter();
-  
-  onSearch() {
-    this.search.emit(this.query);
-  }
-}
-```
-
-```html
-<section>
-  <input [(ngModel)]="query" />
-  <button (click)="execute()">search</button>
-</section>
-```
-
-*utilisation :*
-```html
-<app-search (search)="uneRechercheEstDemandee($event)">
-</app-search>
 ```
 
 ---

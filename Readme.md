@@ -393,13 +393,6 @@ Les composants
 
 ## initialiser le projet
 
-```bash
-npm install -g @angular/cli
-ng new formation-angular
-cd formation-angular
-npm run start
-```
-
 ---
 
 Les composants
@@ -407,18 +400,8 @@ Les composants
 ## creation d'un composant
 
 ```bash
-ng generate component [module/]name
-```
-
-Exemple :
-```bash
-$ ng generate component search
-installing component
-  create src\app\search\search.component.css
-  create src\app\search\search.component.html
-  create src\app\search\search.component.spec.ts
-  create src\app\search\search.component.ts
-  update src\app\app.module.ts
+  create app\components\search\searchController.html
+  create app\components\search\searchController.ts
 ```
 
 ---
@@ -428,50 +411,17 @@ Les composants
 ## code typescript
 
 ```typescript
-import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
-})
-export class SearchComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+/// <reference path="../../app.module.ts" />
+module app.controllers {
+    export class ResultsController {
+        static $inject = [];
+        
+        constructor() {}
+    }
+    
+    angular.module("angularWithTS").controller("ResultsController", ResultsController);
 }
 ```
-
----
-
-Les composants
-
-## Lifecycle Hooks
-
-```typescript
-// ...
-export class SearchComponent implements OnInit, OnDestroy {
-
-  ngOnInit() {
-    // Exécuté après le premirer affichage
-    // Permet d'initialiser les données à afficher
-    // et d'enregistrer les callbacks d'abonnement aux
-    // changements, si nécessaire
-  }
-
-  ngOnDestroy() {
-    // Appelé avant la destruction du composant
-    // Permet de désinscrire les callbacks d'abonnement
-    // aux changements, si nécessaire
-  }
-  
-}
-```
-> *Plus d'infos sur https://angular.io/guide/lifecycle-hooks*
-
 
 ---
 
@@ -506,7 +456,7 @@ export class SearchComponent {
 ```
 
 ```html
-<input [(ngModel)]="query" /><br />
+<input ng_model="query" /><br />
 Texte saisi: {{query}}
 ```
 <br />
